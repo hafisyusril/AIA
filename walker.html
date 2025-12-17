@@ -16,21 +16,22 @@
       .frame {
         width: 390px;
         height: 700px;
-        background: linear-gradient(to bottom, #1ebcf0 40%, #fce4eb 40%);
+        background: linear-gradient(to bottom, #1ebcf0 35%, #fce4eb 35%);
+        position: relative;
       }
       .frame h1 {
         position: relative;
         color: #ffffff;
         font-size: 50px;
         left: 30px;
-        top: 120px;
+        top: 80px;
       }
       .steps-information {
         display: flex;
         flex-direction: column;
         color: #000000;
         padding-left: 30px;
-        padding-top: 120px;
+        padding-top: 80px;
       }
       .steps-information h2 {
         font-size: 70px;
@@ -40,6 +41,11 @@
         font-size: 20px;
         margin: 0;
       }
+      .steps-information p:nth-child(4) {
+        margin-top: 30px;
+        font-size: 15px;
+      }
+
       .container-shoes {
         display: grid;
         margin: 0;
@@ -47,7 +53,7 @@
         grid-template-columns: 1fr 1fr;
         justify-items: center;
         align-items: center;
-        margin-top: 120px;
+        margin-top: 80px;
       }
       .shoes-1 {
         bottom: 0;
@@ -68,6 +74,25 @@
         animation: stepRight 2s linear infinite;
         animation-delay: -2s;
       }
+
+      .share-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        padding: 6px 12px;
+        border: solid 0.5px #ffffff;
+        border-radius: 20px;
+
+        color: #ffffff;
+        font-weight: 100;
+        cursor: pointer;
+      }
+
       @keyframes stepLeft {
         0% {
           transform: translateX(0) translateY(0) rotate(-5deg);
@@ -139,15 +164,52 @@
           transform: translateX(0) translateY(0) rotate(0deg);
         }
       }
+
+      .scroll {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
     </style>
   </head>
   <body>
     <div class="frame">
+      <div class="share-button">
+        <svg
+          width="12"
+          height="11"
+          viewBox="0 0 42 41"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M32.6999 15.35C32.2999 15.35 31.8 15.15 31.5 14.85L20.6999 4.05L9.89994 14.85C9.19994 15.55 8.19998 15.55 7.49998 14.85C6.79998 14.15 6.79998 13.15 7.49998 12.45L19.5 0.45C20.1 -0.15 21.1999 -0.15 21.8999 0.45L33.8999 12.45C34.5999 13.15 34.5999 14.15 33.8999 14.85C33.5999 15.15 33.0999 15.35 32.6999 15.35Z"
+            fill="white"
+          />
+          <path
+            d="M20.7 32.75C19.8 32.75 19 32.05 19 31.05V1.75005C19 0.850046 19.7 0.0500488 20.7 0.0500488C21.7 0.0500488 22.4 0.750046 22.4 1.75005V31.05C22.4 31.95 21.7 32.75 20.7 32.75Z"
+            fill="white"
+          />
+          <path
+            d="M33.5 40.65H8.09998C3.59998 40.65 0 37.05 0 32.55V24.95C0 24.05 0.699951 23.25 1.69995 23.25C2.69995 23.25 3.39996 23.95 3.39996 24.95V32.55C3.39996 35.15 5.49998 37.25 8.09998 37.25H33.5C36.1 37.25 38.2 35.15 38.2 32.55V24.95C38.2 24.05 38.9 23.25 39.9 23.25C40.9 23.25 41.6 23.95 41.6 24.95V32.55C41.6 37.05 38 40.65 33.5 40.65Z"
+            fill="white"
+          />
+        </svg>
+
+        Share
+      </div>
+
       <h1 class="h1-title">Casual <br />Walker</h1>
       <div class="steps-information">
         <p>You walked</p>
         <h2>540.000</h2>
         <p>Steps this year.</p>
+        <p>That's an average of 14-5000 steps each day. <br />Keep it up!</p>
       </div>
 
       <div class="container-shoes">
@@ -286,6 +348,30 @@
             fill="#333D47"
           />
         </svg>
+      </div>
+
+      <div class="scroll">
+        <svg
+          width="15"
+          height="18"
+          viewBox="0 0 38 31"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.709084 19.2122L18.5091 1.41223L36.4091 19.2122"
+            stroke="black"
+            stroke-width="2"
+            stroke-miterlimit="10"
+          />
+          <path
+            d="M0.709084 29.8121L18.5091 11.9122L36.4091 29.8121"
+            stroke="black"
+            stroke-width="2"
+            stroke-miterlimit="10"
+          />
+        </svg>
+        scroll
       </div>
     </div>
   </body>
