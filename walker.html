@@ -39,11 +39,44 @@
       }
       .steps-information p {
         font-size: 20px;
-        margin: 0;
+        margin: 5px 0;
       }
       .steps-information p:nth-child(4) {
         margin-top: 30px;
         font-size: 15px;
+      }
+      
+      .digit-container {
+        display: inline-block;
+        position: relative;
+        height: 80px;
+        width: 50px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        margin: 0 2px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Vertical strip of numbers */
+      .digit-strip {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        transition: none;
+      }
+
+      /* Individual number in the strip */
+      .digit-strip span {
+        display: block;
+        height: 80px;
+        line-height: 80px;
+        font-size: 70px;
+        font-weight: bold;
+      }
+
+      .spinning {
+        transition: transform 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       .container-shoes {
@@ -207,7 +240,7 @@
       <h1 class="h1-title">Casual <br />Walker</h1>
       <div class="steps-information">
         <p>You walked</p>
-        <h2>540.000</h2>
+        <h2 id="steps-counter">0</h2>
         <p>Steps this year.</p>
         <p>That's an average of 14-5000 steps each day. <br />Keep it up!</p>
       </div>
@@ -374,5 +407,6 @@
         scroll
       </div>
     </div>
+    <script src="counter.js" defer></script>
   </body>
 </html>
