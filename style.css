@@ -1,0 +1,25 @@
+/* Add this to your existing global style.css */
+
+.page {
+  height: 100vh;
+  scroll-snap-align: start;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.page.active {
+  opacity: 1;
+}
+
+.page:first-child {
+  opacity: 1; /* Show first page immediately */
+}
+
+/* Prevent animations from playing on hidden pages */
+.page:not(.active) * {
+  animation-play-state: paused !important;
+}
+
+.page.active * {
+  animation-play-state: running !important;
+}
