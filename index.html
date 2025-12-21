@@ -1,143 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Main Container</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Container</title>
 
-  <!-- GLOBAL CSS for all pages -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="health-check/style.css" />
-  <link rel="stylesheet" href="reward-redeem/style.css" />
+    <!-- GLOBAL CSS for all pages -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="health-check/style.css" />
+    <link rel="stylesheet" href="reward-redeem/style.css" />
+  </head>
+  <body>
+    <!-- Container for all pages -->
+    <div id="container"></div>
 
-</head>
-<body>
+    <!-- MAIN SCROLL SCRIPT -->
+    <script>
+      const pagesHTML = [
+        "intro/intro.html",
+        "gym-visit/gym-visit.html",
+        "weekly-challenge/weekly-challenge.html",
+        "tiering/tiering.html",
+        "health-check/health-check.html",
+        "reward-redeem/reward-redeem.html",
+      ];
+      const container = document.getElementById("container");
 
-  <!-- Container for all pages -->
-  <div id="container"></div>
-
-  <!-- MAIN SCROLL SCRIPT -->
-  <script>
-    const pagesHTML = [
-      'health-check/health-check.html',
-      'reward-redeem/reward-redeem.html'
-    ];
-    const container = document.getElementById('container');
-
-    async function loadPages() {
-      for (const page of pagesHTML) {
-        try {
-          const res = await fetch(page);
-          const html = await res.text();
-          const div = document.createElement('div');
-          div.classList.add('page'); // for scroll snapping
-          div.innerHTML = html;
-          container.appendChild(div);
-        } catch (err) {
-          console.error('Failed to load page', page, err);
+      async function loadPages() {
+        for (const page of pagesHTML) {
+          try {
+            const res = await fetch(page);
+            const html = await res.text();
+            const div = document.createElement("div");
+            div.classList.add("page"); // for scroll snapping
+            div.innerHTML = html;
+            container.appendChild(div);
+          } catch (err) {
+            console.error("Failed to load page", page, err);
+          }
         }
+        await initPageScripts(); // Wait for scripts to load
+        initScroll(); // Setup TikTok-style scroll
       }
-      await initPageScripts(); // Wait for scripts to load
-      initScroll();      // Setup TikTok-style scroll
-    }
 
-    // TikTok-style scroll
-    function initScroll() {
-      const pageElements = document.querySelectorAll('.page');
-      let currentPage = 0;
-      let isScrolling = false;
+      // TikTok-style scroll
+      function initScroll() {
+        const pageElements = document.querySelectorAll(".page");
+        let currentPage = 0;
+        let isScrolling = false;
 
-      // Mark first page as active and trigger animations
-      pageElements[0].classList.add('active');
-      setTimeout(() => {
-        triggerPageAnimations(pageElements[0]);
-      }, 200);
+        // Mark first page as active and trigger animations
+        pageElements[0].classList.add("active");
+        setTimeout(() => {
+          triggerPageAnimations(pageElements[0]);
+        }, 200);
 
-      function triggerPageAnimations(pageElement) {
-        // Trigger page-specific initialization based on page index
-        const pageIndex = Array.from(pageElements).indexOf(pageElement);
-        
-        // Dispatch custom event to trigger page scripts
-        const event = new CustomEvent('pageActivated', { detail: { pageIndex } });
-        pageElement.dispatchEvent(event);
-        
-        // Remove and re-add animated elements to restart animations
-        const animatedElements = pageElement.querySelectorAll('[style*="animation"]');
-        animatedElements.forEach(el => {
-          const animation = el.style.animation;
-          el.style.animation = 'none';
+        function triggerPageAnimations(pageElement) {
+          // Trigger page-specific initialization based on page index
+          const pageIndex = Array.from(pageElements).indexOf(pageElement);
+
+          // Dispatch custom event to trigger page scripts
+          const event = new CustomEvent("pageActivated", {
+            detail: { pageIndex },
+          });
+          pageElement.dispatchEvent(event);
+
+          // Remove and re-add animated elements to restart animations
+          const animatedElements = pageElement.querySelectorAll(
+            '[style*="animation"]'
+          );
+          animatedElements.forEach((el) => {
+            const animation = el.style.animation;
+            el.style.animation = "none";
+            setTimeout(() => {
+              el.style.animation = animation;
+            }, 10);
+          });
+        }
+
+        function goToPage(index) {
+          if (index < 0 || index >= pageElements.length) return;
+          isScrolling = true;
+
+          // Remove active from all pages
+          pageElements.forEach((p) => p.classList.remove("active"));
+
+          currentPage = index;
+          pageElements[currentPage].classList.add("active");
+          pageElements[currentPage].scrollIntoView({ behavior: "smooth" });
+
+          // Trigger animations for the new page
           setTimeout(() => {
-            el.style.animation = animation;
-          }, 10);
+            triggerPageAnimations(pageElements[currentPage]);
+          }, 100);
+
+          setTimeout(() => (isScrolling = false), 700);
+        }
+
+        window.addEventListener("wheel", (e) => {
+          if (isScrolling) return;
+          if (e.deltaY > 0) goToPage(currentPage + 1);
+          if (e.deltaY < 0) goToPage(currentPage - 1);
+        });
+
+        // touch support for mobile
+        let touchStartY = 0;
+        window.addEventListener("touchstart", (e) => {
+          touchStartY = e.touches[0].clientY;
+        });
+        window.addEventListener("touchend", (e) => {
+          const touchEndY = e.changedTouches[0].clientY;
+          if (isScrolling) return;
+          if (touchStartY - touchEndY > 50) goToPage(currentPage + 1);
+          if (touchEndY - touchStartY > 50) goToPage(currentPage - 1);
         });
       }
 
-      function goToPage(index) {
-        if (index < 0 || index >= pageElements.length) return;
-        isScrolling = true;
-        
-        // Remove active from all pages
-        pageElements.forEach(p => p.classList.remove('active'));
-        
-        currentPage = index;
-        pageElements[currentPage].classList.add('active');
-        pageElements[currentPage].scrollIntoView({ behavior: 'smooth' });
-        
-        // Trigger animations for the new page
-        setTimeout(() => {
-          triggerPageAnimations(pageElements[currentPage]);
-        }, 100);
-        
-        setTimeout(() => isScrolling = false, 700);
+      // Initialize page-specific scripts
+      function initPageScripts() {
+        return new Promise((resolve) => {
+          let scriptsLoaded = 0;
+          const totalScripts = 2;
+
+          function onScriptLoad() {
+            scriptsLoaded++;
+            if (scriptsLoaded === totalScripts) {
+              setTimeout(() => resolve(), 100); // Small delay to ensure scripts execute
+            }
+          }
+
+          // Health Check page script
+          const healthScript = document.createElement("script");
+          healthScript.src = "health-check/script.js";
+          healthScript.onload = onScriptLoad;
+          document.body.appendChild(healthScript);
+
+          // Reward Redeem page script
+          const rewardScript = document.createElement("script");
+          rewardScript.src = "reward-redeem/script.js";
+          rewardScript.onload = onScriptLoad;
+          document.body.appendChild(rewardScript);
+        });
       }
 
-      window.addEventListener('wheel', (e) => {
-        if (isScrolling) return;
-        if (e.deltaY > 0) goToPage(currentPage + 1);
-        if (e.deltaY < 0) goToPage(currentPage - 1);
-      });
-
-      // touch support for mobile
-      let touchStartY = 0;
-      window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
-      window.addEventListener('touchend', e => {
-        const touchEndY = e.changedTouches[0].clientY;
-        if (isScrolling) return;
-        if (touchStartY - touchEndY > 50) goToPage(currentPage + 1);
-        if (touchEndY - touchStartY > 50) goToPage(currentPage - 1);
-      });
-    }
-
-    // Initialize page-specific scripts
-    function initPageScripts() {
-      return new Promise((resolve) => {
-        let scriptsLoaded = 0;
-        const totalScripts = 2;
-        
-        function onScriptLoad() {
-          scriptsLoaded++;
-          if (scriptsLoaded === totalScripts) {
-            setTimeout(() => resolve(), 100); // Small delay to ensure scripts execute
-          }
-        }
-        
-        // Health Check page script
-        const healthScript = document.createElement('script');
-        healthScript.src = 'health-check/script.js';
-        healthScript.onload = onScriptLoad;
-        document.body.appendChild(healthScript);
-
-        // Reward Redeem page script
-        const rewardScript = document.createElement('script');
-        rewardScript.src = 'reward-redeem/script.js';
-        rewardScript.onload = onScriptLoad;
-        document.body.appendChild(rewardScript);
-      });
-    }
-
-    // Load pages on start
-    loadPages();
-  </script>
-
-</body>
+      // Load pages on start
+      loadPages();
+    </script>
+  </body>
 </html>

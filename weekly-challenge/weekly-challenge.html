@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 100px 20px;
+    }
+    .frame-weekly-challenge {
+      width: 390px;
+      height: 700px;
+      background: linear-gradient(to bottom, #f9572b 35%, #bcf7c6 35%);
+      position: relative;
+      animation: frameIntro 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+    }
+    .ovals {
+      position: absolute;
+      top: -90px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .ovals .oval {
+      width: 390px;
+      height: 350px;
+      margin-top: -176px;
+    }
+    .ovals .oval:first-child {
+      margin-top: 0;
+    }
+    .frame-weekly-challenge .woman {
+      width: 300px;
+      height: 220px;
+      position: absolute;
+      bottom: 60px;
+      right: -15px;
+    }
+    .title {
+      position: relative;
+      color: #ffffff;
+      font-size: 50px;
+      font-weight: 700;
+      left: 30px;
+      top: 110px;
+    }
+    .weekly-challenge-info {
+      display: flex;
+      position: absolute;
+      flex-direction: column;
+      color: #000000;
+      padding-left: 30px;
+      padding-top: 150px;
+    }
+    .weekly-challenge-info h2 {
+      font-size: 50px;
+      margin: 0;
+    }
+    .weekly-challenge-info p {
+      font-size: 20px;
+      margin: 0;
+      z-index: 1;
+    }
+    .weekly-challenge-info p:nth-child(3) {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .weekly-challenge-info p:nth-child(4) {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: 100;
+      z-index: 1;
+    }
+  </style>
+  <body>
+    <div class="frame-weekly-challenge">
+      <div class="ovals">
+        <img class="oval" src="/weekly-challenge/svg/oval.svg" alt="" />
+        <img class="oval" src="/weekly-challenge/svg/oval.svg" alt="" />
+        <img class="oval" src="/weekly-challenge/svg/oval.svg" alt="" />
+        <img class="oval" src="/weekly-challenge/svg/oval.svg" alt="" />
+      </div>
+      <div class="title">Fitness <br />Chaser</div>
+      <div class="weekly-challenge-info">
+        <p>You finished</p>
+        <h2>27</h2>
+        <p>Weekly Challenges!</p>
+        <p>Your superpower = consistency!</p>
+      </div>
+      <img
+        class="woman"
+        src="/weekly-challenge/svg/woman-red.svg"
+        alt="Woman"
+      />
+    </div>
+  </body>
+</html>

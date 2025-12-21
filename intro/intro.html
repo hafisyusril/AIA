@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro</title>
+  </head>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 100px 20px;
+    }
+    .frame-intro {
+      width: 390px;
+      height: 700px;
+      background: #ffffff;
+      position: relative;
+      animation: frameIntro 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+    }
+    .trapesium-top {
+      position: absolute;
+      height: 225px;
+      width: 400px;
+      left: -7px;
+    }
+    .trapesium-left {
+      position: absolute;
+      height: 720px;
+      top: -13px;
+      left: -5px;
+    }
+    .trapesium-bot {
+      position: absolute;
+      height: 140px;
+      width: 400px;
+      bottom: -7px;
+      left: -4px;
+    }
+    .trapesium-right {
+      position: absolute;
+      height: 720px;
+      width: 120px;
+      top: -13px;
+      right: -25px;
+    }
+    .frame-intro .logo {
+      width: 250px;
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .frame-intro .frame-content {
+      position: absolute;
+      width: 265px;
+      height: 577px;
+      bottom: 15px;
+      left: 60px;
+    }
+    .intro-content {
+      position: relative;
+      width: 250px;
+      height: 335px;
+      bottom: -228px;
+      left: 67px;
+      overflow: hidden;
+    }
+    .intro-content .red-heart {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 0;
+      right: 0;
+
+      transform: rotate(30deg);
+    }
+    .intro-content .check-inside-love {
+      position: absolute;
+      width: 50px;
+      right: 85px;
+    }
+    .intro-content .women-gold {
+      position: absolute;
+      width: 160px;
+    }
+    .intro-content .deadlift {
+      position: absolute;
+      width: 170px;
+      bottom: 0;
+    }
+    .intro-content .gold-coin {
+      position: absolute;
+      width: 70px;
+      bottom: 50px;
+    }
+    .intro-content .woman-red {
+      position: absolute;
+      width: 160px;
+      bottom: 0;
+      right: 0;
+    }
+    .intro-content .shoe {
+      position: absolute;
+      width: 110px;
+      right: 0;
+      top: 90px;
+    }
+  </style>
+  <body>
+    <div class="frame-intro">
+      <img class="trapesium-top" src="intro/svg/trapesium-top.svg" alt="" />
+      <img class="trapesium-left" src="intro/svg/trapesium-left.svg" alt="" />
+      <img class="trapesium-bot" src="/intro/svg/trapesium-bot.svg" alt="" />
+      <img
+        class="trapesium-right"
+        src="/intro/svg/trapesium-right.svg"
+        alt=""
+      />
+      <img
+        class="logo"
+        src="intro/svg/aia-vitality-wrapped.svg"
+        alt="AIA Vitality Wrapped 2025"
+      />
+      <div class="intro-content">
+        <img class="red-heart" src="/tiering/svg/red-heart.svg" alt="Red Heart">
+        <img class="check-inside-love" src="/intro/svg/check-inside-love.svg" alt="Love">
+        <img class="women-gold" src="reward-redeem/svg/women-gold.svg" alt="Women Gold">
+        <img class="deadlift" src="/gym-visit/svg/gym-visit-deadlift.svg" alt="Deadlift">
+        <img class="gold-coin" src="/reward-redeem/svg/gold-coin.svg" alt="Gold Coin">
+        <img class="woman-red" src="/intro/svg/wrapped-woman-red.svg" alt="Woman Red">
+        <img class="shoe" src="/intro/svg/shoe.svg" alt="Shoe">
+
+      </div>
+      <img class="frame-content" src="intro/svg/intro-content.svg" alt="Intro Content" />
+    </div>
+  </body>
+</html>
