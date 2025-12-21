@@ -12,6 +12,7 @@ body {
   height: 700px;
   background: linear-gradient(to right, #D31145 75%, #E8386F 35%);
   position: relative;
+  overflow: hidden;
 }
 
 .element {

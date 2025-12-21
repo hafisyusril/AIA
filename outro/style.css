@@ -1,0 +1,169 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #333; /* Dark background to see the card clearly */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 50px 0;
+  min-height: 100vh;
+}
+
+.frame-outro {
+  width: 390px;
+  height: 700px;
+  position: relative;
+  background-color: #F0F2F5; /* Light Grey Background for the top half */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* --- Header Text --- */
+.top-content-outro {
+  position: absolute;
+  top: 40px;
+  left: 30px;
+  z-index: 10;
+}
+
+.logo {
+  position: absolute;
+  width: 100px;
+}
+
+/* --- Decorative Dots --- */
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #E88D34; /* Orange */
+  z-index: 1;
+}
+
+.dot-small-left {
+  width: 25px;
+  height: 25px;
+  top: 320px;
+  left: 30px;
+}
+
+.dot-small-top {
+  width: 25px;
+  height: 25px;
+  top: 170px;
+  left: 55%;
+}
+
+.dot-medium-right {
+  width: 40px;
+  height: 40px;
+  top: 330px;
+  right: 20px;
+}
+
+/* --- Illustrations --- */
+.illustration-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+.cycle {
+  position: absolute;
+  width: 100px;
+  top: 115px;
+  left: 75px;
+}
+
+.running {
+  position: absolute;
+  width: 170px;
+  top: 130px;
+  right: 50px; /* Pushed to right */
+}
+
+.orange-dot {
+  position: absolute;
+  width: 30px;
+  left: 320px;
+  top: 230px;
+  z-index: 10;
+}
+
+.orange-dot-2 {
+  position: absolute;
+  width: 20px;
+  left: 225px;
+  top: 120px;
+}
+
+.orange-dot-3 {
+  position: absolute;
+  width: 20px;
+  left: 60px;
+  top: 215px;
+  
+}
+
+/* --- Bottom White Curve Section --- */
+.bottom-content-outro {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 67%; /* Occupies bottom ~40% */
+  background-color: #FFFFFF;
+  border-top-left-radius: 50% 40px;  /* Creates the subtle hill curve */
+  border-top-right-radius: 50% 40px; /* Creates the subtle hill curve */
+  z-index: 0;
+  padding-top: 0px; /* Space inside the white area */
+  box-sizing: border-box;
+}
+
+.subtitle {
+  position: absolute;
+  font-size: 18px;
+  color: #333333;
+  bottom: 300px;
+  left: 50px;
+  font-weight: 200;
+}
+
+.personality-type {
+  position: absolute;
+  bottom: 130px;
+  left: 45px;
+  font-size: 60px;
+  font-weight: 800;
+  color: #F98115; /* Orange */
+  line-height: 0.95;
+}
+
+.description {
+  font-weight: 50;
+  font-size: 15px;
+  color: #444444;
+  line-height: 1.4;
+  position: absolute;
+  left: 50px;
+  bottom: 90px;
+}
+
+.website {
+  position: absolute;
+  left: 50px;
+  top: 400px;
+  font-size: 14px;
+  font-weight: 100;
+  color: #555555;
+}
+
+.disclaimer {
+  position: absolute;
+  left: 50px;
+  top: 425px;
+  font-size: 7.5px;
+  color: #999999;
+}
