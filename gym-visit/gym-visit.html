@@ -17,41 +17,55 @@
 
     .frame-gym-visit {
       width: 390px;
-      height: 700px;
+      height: 800px;
       background: linear-gradient(to bottom, #9393f9 35%, #d7f5ff 35%);
       position: relative;
       animation: frameIntro 1s cubic-bezier(0.34, 1.56, 0.64, 1);
       overflow: hidden;
     }
-    .frame-gym-visit .triangle {
+    .triangle-layer {
       position: absolute;
-      top: -40px;
-      left: -150px;
-      width: 700px;
-      height: 700px;
+      width: 100%;
+      height: 50%;
+      left: 0;
     }
+    .triangle-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.5;
+    }
+    .triangle-layer.top {
+      top: 0;
+    }
+
+    .triangle-layer.bottom {
+      bottom: 0;
+    }
+
     .frame-gym-visit .deadlift {
-      width: 300px;
-      height: 250px;
+      width: 250px;
+      height: 300px;
       position: absolute;
-      bottom: 60px;
+      bottom: 40px;
       right: 0;
     }
-    .title {
-      position: relative;
+    .frame-gym-visit .title {
+      position: absolute;
       color: #ffffff;
       font-size: 50px;
       font-weight: 700;
       left: 30px;
-      top: 110px;
+      top: 140px;
     }
     .gym-information {
       display: flex;
       position: absolute;
       flex-direction: column;
       color: #000000;
-      padding-left: 30px;
-      padding-top: 150px;
+      left: 30px;
+      top: 300px;
     }
     .gym-information h2 {
       font-size: 50px;
@@ -70,16 +84,24 @@
   </style>
   <body>
     <div class="frame-gym-visit">
-      <div class="title">
+      <div class="title" id="gym-title">
         Routines <br />
         Starter
       </div>
-      <img class="triangle" src="gym-visit/svg/triangle.svg" alt="" />
+
+      <div class="triangle-layer top">
+        <img src="gym-visit/svg/triangle.svg" />
+      </div>
+
+      <div class="triangle-layer bottom">
+        <img src="gym-visit/svg/triangle.svg" />
+      </div>
+
       <div class="gym-information">
         <p>You went to gym partner</p>
-        <h2>25</h2>
+        <h2 id="gym-counter">270</h2>
         <p>times</p>
-        <p>Nice Start!</p>
+        <p class="gym-message">Nice Start!</p>
       </div>
       <img
         class="deadlift"
@@ -88,4 +110,38 @@
       />
     </div>
   </body>
+  <script>
+    const counterEl = document.getElementById("gym-counter");
+    const frameEl = document.querySelector(".frame-gym-visit");
+    const titleEl = document.getElementById("gym-title");
+    const messageEl = document.querySelector(".gym-message");
+
+    const counter = Number(counterEl.textContent);
+
+    function updateUI(value) {
+      if (value <= 50) {
+        titleEl.innerHTML = "Routines <br> Starter";
+        messageEl.innerHTML = "Nice Start!";
+        frameEl.style.background =
+          "linear-gradient(to bottom, #9393f9 35%, #d7f5ff 35%)";
+      } else if (value <= 150) {
+        titleEl.innerHTML = "Regular <br> Powerlifter";
+        messageEl.innerHTML = "Your habit <br> is solid!";
+        frameEl.style.background =
+          "linear-gradient(to bottom, rgba(113, 113, 226, 1) 35%, rgba(178, 232, 247, 1) 35%)";
+      } else if (value <= 250) {
+        titleEl.innerHTML = "Strong <br> Habit Builder";
+        messageEl.innerHTML = "Love the <br> discipline!";
+        frameEl.style.background =
+          "linear-gradient(to bottom, rgba(70, 70, 204, 1) 35%, rgba(108, 220, 239, 1) 35%)";
+      } else {
+        titleEl.innerHTML = "Gym <br> Crusher";
+        messageEl.innerHTML = "You're <br> unstoppable!";
+        frameEl.style.background =
+          "linear-gradient(to bottom, rgba(41, 41, 155, 1) 35%, rgba(23, 209, 229, 1) 35%)";
+      }
+    }
+
+    updateUI(counter);
+  </script>
 </html>
